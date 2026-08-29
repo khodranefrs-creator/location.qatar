@@ -10,9 +10,12 @@ export function formatPrice(price: number | undefined, locale: Locale) {
   return locale === "ar" ? `${num} ريال` : `${num} QAR`;
 }
 
-export function formatArea(area: number | undefined) {
+export function formatArea(area: number | undefined, locale: Locale) {
   if (area === undefined || area === null) return null;
-  return `${area} م²`;
+  const num = new Intl.NumberFormat(locale === "ar" ? "ar-QA" : "en-QA", {
+    maximumFractionDigits: 0,
+  }).format(area);
+  return locale === "ar" ? `${num} م²` : `${num} m²`;
 }
 
 export function getPurposeLabel(locale: Locale) {

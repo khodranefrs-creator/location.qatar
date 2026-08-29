@@ -10,15 +10,45 @@ type AreaTile = {
   ar: string;
   en: string;
   image: string;
-  wide?: boolean;
+  className: string;
 };
 
 const TILES: AreaTile[] = [
-  { num: "01", ar: "لقطيفية", en: "Luqtaifiya", image: "/images/clean/crop-p04.jpg", wide: true },
-  { num: "02", ar: "الثمامة", en: "Al Thumama", image: "/images/clean/crop-p10.jpg" },
-  { num: "03", ar: "الريان", en: "Al Rayyan", image: "/images/clean/crop-p24.jpg" },
-  { num: "04", ar: "مدينة خليفة", en: "Madinat Khalifa", image: "/images/clean/crop-p20.jpg", wide: true },
-  { num: "05", ar: "الذخيرة", en: "Al Dhakhira", image: "/images/clean/crop-p07.jpg" },
+  {
+    num: "01",
+    ar: "لقطيفية",
+    en: "Luqtaifiya",
+    image: "/images/clean/crop-p04.jpg",
+    className: "lg:col-span-4 aspect-[16/10] md:aspect-[4/3]",
+  },
+  {
+    num: "02",
+    ar: "الثمامة",
+    en: "Al Thumama",
+    image: "/images/clean/crop-p10.jpg",
+    className: "lg:col-span-2 aspect-[16/10] md:aspect-[4/5]",
+  },
+  {
+    num: "03",
+    ar: "الريان",
+    en: "Al Rayyan",
+    image: "/images/clean/crop-p24.jpg",
+    className: "lg:col-span-2 aspect-[16/10] md:aspect-[4/5]",
+  },
+  {
+    num: "04",
+    ar: "مدينة خليفة",
+    en: "Madinat Khalifa",
+    image: "/images/clean/crop-p20.jpg",
+    className: "lg:col-span-4 aspect-[16/10] md:aspect-[3/2]",
+  },
+  {
+    num: "05",
+    ar: "الذخيرة",
+    en: "Al Dhakhira",
+    image: "/images/clean/crop-p22.jpg",
+    className: "lg:col-span-2 aspect-[16/10] md:aspect-[4/5]",
+  },
 ];
 
 export function AreasSection({
@@ -50,24 +80,19 @@ export function AreasSection({
           </div>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
           {TILES.map((area, i) => (
-            <Reveal
-              key={area.num}
-              delay={i * 90}
-              className={area.wide ? "md:col-span-2 lg:col-span-2" : "lg:col-span-1"}
-            >
+            <Reveal key={area.num} delay={i * 80} className={area.className}>
               <Link
                 href={`/${locale}/properties?area=${encodeURIComponent(area.ar)}`}
-                className={`group relative block overflow-hidden bg-ink ${
-                  area.wide ? "aspect-[16/10] md:aspect-[4/3]" : "aspect-[4/5]"
-                }`}
+                aria-label={locale === "ar" ? area.ar : area.en}
+                className="group relative block h-full w-full overflow-hidden bg-ink"
               >
                 <Image
                   src={area.image}
                   alt={locale === "ar" ? area.ar : area.en}
                   fill
-                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  sizes="(min-width: 1024px) 32vw, 100vw"
                   className="object-cover transition-transform duration-[1.4s] group-hover:scale-105"
                   loading="lazy"
                 />
@@ -75,40 +100,30 @@ export function AreasSection({
                 <span className="absolute start-5 top-5 text-[11px] tracking-[0.3em] text-mist/80">
                   {area.num}
                 </span>
-                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-6">
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
                   <h3 className={`text-2xl text-mist md:text-3xl ${locale === "ar" ? "arabic" : ""}`}>
                     {locale === "ar" ? area.ar : area.en}
                   </h3>
-                  <span className="flex h-9 w-9 items-center justify-center border border-mist/40 text-mist transition-colors group-hover:bg-gold group-hover:text-ink group-hover:border-gold">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-mist/40 text-mist transition-colors group-hover:bg-gold group-hover:text-ink group-hover:border-gold">
                     <ArrowIcon className="h-4 w-4 rtl:-scale-x-100" />
                   </span>
                 </div>
               </Link>
             </Reveal>
           ))}
+        </div>
 
-          {/* Final area tile — editorial CTA to view all */}
-          <Reveal delay={TILES.length * 90} className="lg:col-span-1">
+        <Reveal delay={200}>
+          <div className="mt-14 border-t border-ink/15 pt-10">
             <Link
               href={`/${locale}/properties`}
-              className="group flex aspect-[4/5] flex-col justify-between border border-ink/15 bg-paper p-6 transition-colors hover:border-gold"
+              className="group inline-flex items-center gap-2 text-sm tracking-wide text-ink transition-colors hover:text-gold"
             >
-              <span className="text-[11px] tracking-[0.3em] text-gold">{String(TILES.length + 1).padStart(2, "0")}</span>
-              <div>
-                <h3 className={`text-2xl leading-snug text-ink md:text-3xl ${locale === "ar" ? "arabic" : ""}`}>
-                  {locale === "ar" ? "جميع المناطق" : "All Areas"}
-                </h3>
-                <p className={`mt-3 text-sm leading-relaxed text-stone ${locale === "ar" ? "arabic" : ""}`}>
-                  {dict.propertiesPage.subtitle}
-                </p>
-                <span className="mt-6 inline-flex items-center gap-2 border-b border-ink/30 pb-1 text-sm text-ink transition-colors group-hover:border-gold group-hover:text-gold">
-                  {dict.nav.properties}
-                  <ArrowIcon className="h-4 w-4 rtl:-scale-x-100" />
-                </span>
-              </div>
+              {dict.nav.properties}
+              <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
             </Link>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

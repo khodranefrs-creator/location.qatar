@@ -42,14 +42,12 @@ export function Header({
   const navLinks = [
     { label: dict.nav.home, href: `/${locale}` },
     { label: dict.nav.properties, href: `/${locale}/properties` },
-    { label: dict.nav.forSale, href: `/${locale}/properties/for-sale` },
-    { label: dict.nav.forRent, href: `/${locale}/properties/for-rent` },
     { label: dict.nav.services, href: `/${locale}/services` },
     { label: dict.nav.about, href: `/${locale}/about` },
     { label: dict.nav.contact, href: `/${locale}/contact` },
   ];
 
-  const onDark = isHome && !open;
+  const onDark = !scrolled && !open;
 
   return (
     <header
@@ -65,7 +63,11 @@ export function Header({
 
         {/* Logo - center on desktop, start on mobile */}
         <div className="flex-1 md:flex-initial md:flex-none">
-          <Logo locale={locale} className="px-2 md:px-0" />
+          <Logo
+            locale={locale}
+            variant={onDark ? "white" : "burgundy"}
+            className="px-2 md:px-0"
+          />
         </div>
 
         {/* Desktop nav - center */}
@@ -139,7 +141,7 @@ export function Header({
           className="fixed inset-0 top-0 z-50 flex flex-col bg-mist lg:hidden"
         >
           <div className="flex h-16 items-center justify-between px-5">
-            <Logo locale={locale} />
+            <Logo locale={locale} variant="burgundy" />
             <button
               type="button"
               onClick={() => setOpen(false)}

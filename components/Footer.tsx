@@ -37,7 +37,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
                 <Image
-                  src="/images/brand/logo.png"
+                  src="/images/brand/logo-burgundy.png"
                   alt={locale === "ar" ? "لوكيشن للعقارات" : "Location Real Estate"}
                   width={192}
                   height={192}
@@ -111,6 +111,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
             <div className="flex flex-col gap-3 text-sm text-mist/70">
               <a href={`tel:${site.phoneRaw}`} className="transition-colors hover:text-mist" dir="ltr">
                 {site.phoneDisplay}
+              </a>
+              <a href={`mailto:${site.email}`} className="break-all transition-colors hover:text-mist" dir="ltr">
+                {site.email}
               </a>
               <span>{locale === "ar" ? "الدوحة، قطر" : "Doha, Qatar"}</span>
               <span className="text-mist/50">{locale === "ar" ? "شارع الجزيرة العربية" : "Al Jazira Al Arabiya St"}</span>

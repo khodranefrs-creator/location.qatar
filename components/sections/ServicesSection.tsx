@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Container, Eyebrow } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import type { Dict } from "@/components/types";
@@ -22,7 +21,7 @@ export function ServicesSection({
               <Reveal>
                 <Eyebrow tone="gold">{s.eyebrow}</Eyebrow>
                 <h2
-                  className={`mt-6 text-4xl leading-[1.05] tracking-tight text-ink md:text-6xl ${
+                  className={`mt-6 text-4xl leading-[1.05] tracking-tight text-ink md:text-5xl ${
                     locale === "ar" ? "arabic font-semibold" : "font-semibold"
                   }`}
                 >
@@ -31,18 +30,6 @@ export function ServicesSection({
                 <p className={`mt-6 max-w-sm text-base leading-relaxed text-stone md:text-lg ${locale === "ar" ? "arabic" : ""}`}>
                   {s.lead}
                 </p>
-              </Reveal>
-              <Reveal delay={120}>
-                <div className="mt-10 hidden aspect-[4/3] overflow-hidden bg-ink lg:block">
-                  <Image
-                    src="/images/clean/banner-wide-c.png"
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 34vw, 100vw"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
               </Reveal>
             </div>
           </div>

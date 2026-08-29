@@ -4,11 +4,10 @@ import { dictionaries } from "@/lib/dictionaries";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SearchSection } from "@/components/sections/SearchSection";
 import { FeaturedSection } from "@/components/sections/FeaturedSection";
-import { SellSection } from "@/components/sections/SellSection";
+import { MarketStatementSection } from "@/components/sections/MarketStatementSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { InvestmentSection } from "@/components/sections/InvestmentSection";
 import { AreasSection } from "@/components/sections/AreasSection";
-import { CinematicSection } from "@/components/sections/CinematicSection";
+import { SellSection } from "@/components/sections/SellSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -42,11 +41,10 @@ export default async function Home({
       <HeroSection locale={locale} dict={dict} />
       <SearchSection locale={locale} dict={dict} />
       <FeaturedSection locale={locale} dict={dict} />
-      <SellSection locale={locale} dict={dict} />
+      <MarketStatementSection locale={locale} dict={dict} />
       <ServicesSection locale={locale} dict={dict} />
-      <InvestmentSection locale={locale} dict={dict} />
       <AreasSection locale={locale} dict={dict} />
-      <CinematicSection locale={locale} dict={dict} />
+      <SellSection locale={locale} dict={dict} />
       <AboutSection locale={locale} dict={dict} />
       <TrustSection dict={dict} />
       <ContactSection locale={locale} dict={dict} />

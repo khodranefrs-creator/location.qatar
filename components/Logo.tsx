@@ -4,11 +4,17 @@ import Image from "next/image";
 export function Logo({
   locale,
   className = "",
+  variant = "white",
 }: {
   locale: "ar" | "en";
   className?: string;
+  variant?: "white" | "burgundy";
 }) {
   const href = `/${locale}`;
+  const src =
+    variant === "burgundy"
+      ? "/images/brand/logo-burgundy.png"
+      : "/images/brand/logo.png";
   return (
     <Link
       href={href}
@@ -16,7 +22,7 @@ export function Logo({
       className={`group inline-flex items-center ${className}`}
     >
       <Image
-        src="/images/brand/logo.png"
+        src={src}
         alt={locale === "ar" ? "لوكيشن للعقارات" : "Location Real Estate"}
         width={192}
         height={192}

@@ -94,6 +94,12 @@ export type Dict = {
     body: string;
     cta: string;
   };
+  marketStatement: {
+    eyebrow: string;
+    title1: string;
+    title2: string;
+    body: string;
+  };
   about: {
     eyebrow: string;
     title: string;
@@ -111,6 +117,7 @@ export type Dict = {
     title: string;
     phone: string;
     whatsapp: string;
+    email: string;
     address: string;
     call: string;
     directions: string;
@@ -284,15 +291,21 @@ const ar: Dict = {
   areas: {
     eyebrow: "المناطق",
     title: "اكتشف العقارات حسب المنطقة",
-    subtitle: "لوكيشن نعرف السوق ونعرف المكان.",
+    subtitle: "مجموعة مختارة من المناطق الرئيسية داخل قطر.",
     view: "تصفح المنطقة",
     properties: "عقار",
   },
   cinematic: {
     eyebrow: "حضور مميز",
-    title: "نعرف السوق. نعرف المكان.",
+    title: "المكان المناسب يعرض القيمة الحقيقية.",
     body: "نهتم بالتفاصيل التي يصنعها اللوكيشن، لنعرض عقارك في المكان المثالي أمام المستثمر الصحيح.",
     cta: "تواصل معنا",
+  },
+  marketStatement: {
+    eyebrow: "لوكيشن للعقارات",
+    title1: "نعرف السوق.",
+    title2: "نعرف المكان.",
+    body: "خبرة محلية حقيقية داخل قطر — نفهم السوق ونختار اللوكيشن المناسب لعقارك.",
   },
   about: {
     eyebrow: "عن لوكيشن",
@@ -312,6 +325,7 @@ const ar: Dict = {
     title: "نسعد بالتحدث معك",
     phone: "الهاتف",
     whatsapp: "واتساب",
+    email: "البريد الإلكتروني",
     address: "العنوان",
     call: "اتصال",
     directions: "الموقع على الخريطة",
@@ -486,15 +500,21 @@ const en: Dict = {
   areas: {
     eyebrow: "Areas",
     title: "Explore Properties by Area",
-    subtitle: "We know the market. We know the place.",
+    subtitle: "A curated selection of key areas across Qatar.",
     view: "Browse area",
     properties: "properties",
   },
   cinematic: {
     eyebrow: "Presence",
-    title: "We know the market. We know the place.",
+    title: "The right place reveals true value.",
     body: "We care about the details created by location, to showcase your property in the right place in front of the right investor.",
     cta: "Contact us",
+  },
+  marketStatement: {
+    eyebrow: "LOCATION REAL ESTATE",
+    title1: "We know the market.",
+    title2: "We know the place.",
+    body: "Genuine local expertise in Qatar — we read the market and find the right location for your property.",
   },
   about: {
     eyebrow: "About",
@@ -514,6 +534,7 @@ const en: Dict = {
     title: "We'd love to talk",
     phone: "Phone",
     whatsapp: "WhatsApp",
+    email: "Email",
     address: "Address",
     call: "Call",
     directions: "View on map",

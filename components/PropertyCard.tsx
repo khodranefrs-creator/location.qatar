@@ -25,7 +25,7 @@ export function PropertyCard({
   const typeLabel = getPropertyTypeLabel(locale)(p.propertyType);
   const district = getDistrictLabels(locale, p);
   const price = formatPrice(p.price, locale);
-  const area = formatArea(p.area);
+  const area = formatArea(p.area, locale);
   const href = `/${locale}/properties/${p.slug}`;
 
   return (

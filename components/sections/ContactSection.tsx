@@ -32,9 +32,20 @@ export function ContactSection({
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal>
-            <div className="space-y-1 divide-y divide-ink/10">
+        <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Form — dominant (55%) */}
+          <Reveal className="lg:col-span-7">
+            <div className="border border-line bg-paper p-6 md:p-10">
+              <h3 className={`mb-6 text-2xl font-medium text-ink ${locale === "ar" ? "arabic" : ""}`}>
+                {t.form.title}
+              </h3>
+              <ContactForm locale={locale} dict={dict} />
+            </div>
+          </Reveal>
+
+          {/* Contact info + map (45%) */}
+          <Reveal delay={100} className="lg:col-span-5">
+            <div className="space-y-0 divide-y divide-ink/10">
               <ContactRow
                 label={t.phone}
                 value={site.phoneDisplay}
@@ -45,8 +56,15 @@ export function ContactSection({
               <ContactRow
                 label={t.whatsapp}
                 value={site.phoneDisplay}
-                actionLabel={t.call}
+                actionLabel={t.whatsapp}
                 href={site.whatsappLink}
+              />
+              <ContactRow
+                label={t.email}
+                value={site.email}
+                actionLabel={t.email}
+                href={`mailto:${site.email}`}
+                dir="ltr"
               />
               <div className="flex flex-wrap items-center justify-between gap-3 py-5">
                 <div>
@@ -71,20 +89,11 @@ export function ContactSection({
                 title={t.address}
                 src={mapSrc}
                 width="100%"
-                height="300"
+                height="260"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="block border-0"
               />
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div className="border border-line bg-paper p-6 md:p-8">
-              <h3 className={`mb-6 text-2xl font-medium text-ink ${locale === "ar" ? "arabic" : ""}`}>
-                {t.form.title}
-              </h3>
-              <ContactForm locale={locale} dict={dict} />
             </div>
           </Reveal>
         </div>
@@ -106,19 +115,20 @@ function ContactRow({
   href: string;
   dir?: string;
 }) {
+  const external = href.startsWith("http");
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 py-5">
-      <div>
+      <div className="min-w-0">
         <p className="text-xs font-medium uppercase tracking-wider text-stone">{label}</p>
-        <p className="mt-1 text-lg font-medium text-ink" dir={dir}>
+        <p className="mt-1 break-all text-lg font-medium text-ink" dir={dir}>
           {value}
         </p>
       </div>
       <a
         href={href}
-        target={href.startsWith("http") ? "_blank" : undefined}
-        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-        className="inline-flex items-center gap-2 border border-ink/20 px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-mist"
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
+        className="shrink-0 inline-flex items-center gap-2 border border-ink/20 px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-mist"
       >
         {actionLabel}
       </a>

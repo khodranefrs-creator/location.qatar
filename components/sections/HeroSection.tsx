@@ -14,7 +14,7 @@ export function HeroSection({
   const h = dict.hero;
   return (
     <section
-      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden"
+      className="relative flex min-h-[88svh] min-h-[560px] flex-col justify-end overflow-hidden"
       aria-label={h.title1 + " " + h.title2}
     >
       <Image

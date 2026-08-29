@@ -53,7 +53,7 @@ export default async function PropertyDetailPage({
 
   const t = dict.propertyDetail;
   const price = formatPrice(p.price, locale);
-  const area = formatArea(p.area);
+  const area = formatArea(p.area, locale);
   const title = locale === "ar" ? p.titleAr : p.titleEn;
   const description = locale === "ar" ? p.descriptionAr : p.descriptionEn;
   const purposeLabel = getPurposeLabel(locale)(p.purpose);
