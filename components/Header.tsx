@@ -65,7 +65,7 @@ export function Header({
 
         {/* Logo - center on desktop, start on mobile */}
         <div className="flex-1 md:flex-initial md:flex-none">
-          <Logo locale={locale} variant={onDark ? "light" : "dark"} className="px-2 md:px-0" />
+          <Logo locale={locale} className="px-2 md:px-0" />
         </div>
 
         {/* Desktop nav - center */}
@@ -139,7 +139,7 @@ export function Header({
           className="fixed inset-0 top-0 z-50 flex flex-col bg-mist lg:hidden"
         >
           <div className="flex h-16 items-center justify-between px-5">
-            <Logo locale={locale} variant="dark" />
+            <Logo locale={locale} />
             <button
               type="button"
               onClick={() => setOpen(false)}

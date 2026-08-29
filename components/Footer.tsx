@@ -34,9 +34,15 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
       <div className="mx-auto max-w-[1440px] px-6 py-16 md:px-10 md:py-20">
         <div className="grid gap-12 border-b border-line-light pb-14 md:grid-cols-12">
           <div className="md:col-span-5">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center border border-mist/30">
-                <span className="h-2.5 w-2.5 bg-gold" />
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
+                <Image
+                  src="/images/brand/logo.png"
+                  alt={locale === "ar" ? "لوكيشن للعقارات" : "Location Real Estate"}
+                  width={192}
+                  height={192}
+                  className="h-10 w-10 object-contain"
+                />
               </span>
               <div className="flex flex-col leading-none">
                 <span className="font-sans text-sm font-semibold tracking-[0.3em]">
