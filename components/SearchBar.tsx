@@ -57,11 +57,11 @@ export function SearchBar({
   return (
     <form
       onSubmit={onSubmit}
-      className="grid gap-4 md:grid-cols-5 md:gap-px md:bg-line"
+      className="grid md:grid-cols-5 md:gap-px md:bg-line"
       role="search"
       aria-label={s.title}
     >
-      <Field label={s.purpose} className="md:bg-mist">
+      <Field label={s.purpose}>
         <select
           value={purpose}
           onChange={(e) => setPurpose(e.target.value)}
@@ -73,7 +73,7 @@ export function SearchBar({
         </select>
       </Field>
 
-      <Field label={s.type} className="md:bg-mist">
+      <Field label={s.type}>
         <select
           value={type}
           onChange={(e) => setType(e.target.value)}
@@ -88,7 +88,7 @@ export function SearchBar({
         </select>
       </Field>
 
-      <Field label={s.area} className="md:bg-mist">
+      <Field label={s.area}>
         <select
           value={area}
           onChange={(e) => setArea(e.target.value)}
@@ -103,7 +103,7 @@ export function SearchBar({
         </select>
       </Field>
 
-      <Field label={s.price} className="md:bg-mist">
+      <Field label={s.price}>
         <select
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
@@ -116,10 +116,10 @@ export function SearchBar({
         </select>
       </Field>
 
-      <div className="md:bg-mist">
+      <div className="flex items-center bg-paper md:py-3 md:pl-3">
         <button
           type="submit"
-          className="flex h-full w-full items-center justify-center gap-2 bg-ink px-6 py-5 text-sm font-medium text-mist transition-colors hover:bg-gold hover:text-ink md:py-0"
+          className="inline-flex w-full items-center justify-center gap-2 border border-ink bg-transparent px-6 py-4 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-mist md:h-full md:px-8"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.6" />
@@ -135,15 +135,13 @@ export function SearchBar({
 function Field({
   label,
   children,
-  className = "",
 }: {
   label: string;
   children: React.ReactNode;
-  className?: string;
 }) {
   return (
-    <label className={`relative flex flex-col bg-mist px-5 py-3 ${className}`}>
-      <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-stone">
+    <label className="relative flex flex-col justify-center border-b border-ink/15 bg-paper py-4 md:border-b-0 md:px-5">
+      <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-stone">
         {label}
       </span>
       {children}

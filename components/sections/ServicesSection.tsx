@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container, Eyebrow } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import type { Dict } from "@/components/types";
@@ -11,71 +12,69 @@ export function ServicesSection({
   dict: Dict;
 }) {
   const s = dict.services;
-
   return (
-    <section className="bg-mist py-20 md:py-28">
+    <section className="bg-mist py-24 md:py-40">
       <Container>
-        <Reveal>
-          <div className="max-w-3xl">
-            <Eyebrow tone="gold">{s.eyebrow}</Eyebrow>
-            <h2
-              className={`mt-5 text-4xl leading-[1.1] text-ink md:text-6xl ${
-                locale === "ar" ? "arabic font-semibold" : "font-semibold"
-              }`}
-            >
-              {s.title}
-            </h2>
-            <p className={`mt-5 max-w-2xl text-lg leading-8 text-stone ${locale === "ar" ? "arabic" : ""}`}>
-              {s.lead}
-            </p>
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+          {/* Sticky-ish heading column */}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-32">
+              <Reveal>
+                <Eyebrow tone="gold">{s.eyebrow}</Eyebrow>
+                <h2
+                  className={`mt-6 text-4xl leading-[1.05] tracking-tight text-ink md:text-6xl ${
+                    locale === "ar" ? "arabic font-semibold" : "font-semibold"
+                  }`}
+                >
+                  {s.title}
+                </h2>
+                <p className={`mt-6 max-w-sm text-base leading-relaxed text-stone md:text-lg ${locale === "ar" ? "arabic" : ""}`}>
+                  {s.lead}
+                </p>
+              </Reveal>
+              <Reveal delay={120}>
+                <div className="mt-10 hidden aspect-[4/3] overflow-hidden bg-ink lg:block">
+                  <Image
+                    src="/images/clean/banner-wide-c.png"
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 34vw, 100vw"
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </Reveal>
+            </div>
           </div>
-        </Reveal>
 
-        <div className="mt-14 grid gap-x-16 divide-y divide-ink/10 lg:grid-cols-2">
-          <div>
-            {s.items.slice(0, 3).map((item, i) => (
-              <ServiceRow key={item.title} num={String(i + 1).padStart(2, "0")} title={item.title} desc={item.desc} locale={locale} />
-            ))}
-          </div>
-          <div>
-            {s.items.slice(3).map((item, i) => (
-              <ServiceRow key={item.title} num={String(i + 4).padStart(2, "0")} title={item.title} desc={item.desc} locale={locale} />
-            ))}
+          {/* Numbered editorial list */}
+          <div className="lg:col-span-7">
+            <div className="border-t border-ink/15">
+              {s.items.map((item, i) => (
+                <Reveal key={item.title} delay={i * 60}>
+                  <div className="group grid grid-cols-[auto_1fr] gap-6 border-b border-ink/15 py-9 transition-colors md:grid-cols-[80px_1fr] md:gap-10 md:py-12">
+                    <span className="text-sm font-medium tracking-wide text-gold tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3
+                        className={`text-2xl leading-tight text-ink transition-colors group-hover:text-gold md:text-4xl ${
+                          locale === "ar" ? "arabic font-medium" : "font-medium"
+                        }`}
+                      >
+                        {item.title}
+                      </h3>
+                      <p className={`mt-3 max-w-lg text-base leading-relaxed text-stone ${locale === "ar" ? "arabic" : ""}`}>
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </Container>
     </section>
-  );
-}
-
-function ServiceRow({
-  num,
-  title,
-  desc,
-  locale,
-}: {
-  num: string;
-  title: string;
-  desc: string;
-  locale: Locale;
-}) {
-  return (
-    <Reveal>
-      <div className="group flex gap-6 border-t border-ink/10 py-8 first:border-t-0 lg:py-10">
-        <span className="text-sm font-semibold tabular-nums text-stone transition-colors group-hover:text-gold">
-          {num}
-        </span>
-        <div>
-          <h3
-            className={`text-2xl font-medium text-ink transition-colors group-hover:text-gold md:text-3xl ${
-              locale === "ar" ? "arabic" : ""
-            }`}
-          >
-            {title}
-          </h3>
-          <p className={`mt-2 max-w-md leading-7 text-stone ${locale === "ar" ? "arabic" : ""}`}>{desc}</p>
-        </div>
-      </div>
-    </Reveal>
   );
 }

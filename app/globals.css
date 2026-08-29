@@ -12,6 +12,9 @@
   --color-gold: #b08d3f;
   --color-gold-soft: #caad6b;
   --color-cream: #efe9dc;
+  --color-burgundy: #5c1a21;
+  --color-burgundy-deep: #3f0f14;
+  --color-burgundy-soft: #7a2a31;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-ar: var(--font-arabic), var(--font-inter), ui-sans-serif, system-ui, sans-serif;

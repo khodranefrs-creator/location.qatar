@@ -21,15 +21,15 @@ export function SearchSection({
   areas.sort((a, b) => a.label.localeCompare(b.label, locale === "ar" ? "ar" : "en"));
 
   return (
-    <section className="bg-paper py-10 md:py-0" aria-label={dict.search.title}>
-      <div className="mx-auto max-w-[1320px] px-5 md:-mt-2 md:px-10">
-        <div className="bg-mist p-6 md:p-8">
-          <p className="mb-6 flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-stone">
-            <span className="h-px w-6 bg-gold" />
+    <section className="border-b border-ink/10 bg-paper" aria-label={dict.search.title}>
+      <div className="mx-auto max-w-[1440px] px-5 py-10 md:px-10 md:py-12">
+        <div className="mb-6 flex items-center gap-4">
+          <span className="h-px w-8 bg-gold" />
+          <p className="text-[12px] font-medium uppercase tracking-[0.28em] text-stone">
             {dict.search.title}
           </p>
-          <SearchBar locale={locale} dict={dict} areas={areas} />
         </div>
+        <SearchBar locale={locale} dict={dict} areas={areas} />
       </div>
     </section>
   );
