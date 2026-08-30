@@ -8,31 +8,27 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
   const t = dict.footer;
   const year = new Date().getFullYear();
 
-  const colLink = (href: string, label: string) => (
-    <Link
-      href={href}
-      className="text-sm text-mist/60 transition-colors hover:text-mist"
-    >
-      {label}
-    </Link>
-  );
-
   const socials = [
     { href: site.instagram, src: "/images/brand/instagram.svg", label: "Instagram" },
     { href: site.facebook, src: "/images/brand/facebook.svg", label: "Facebook" },
     { href: site.whatsappLink, src: "/images/brand/whatsapp.svg", label: "WhatsApp" },
-    {
-      href: site.tiktok,
-      src: "/images/brand/tiktok.svg",
-      label: "TikTok",
-      invert: true,
-    },
+    { href: site.tiktok, src: "/images/brand/tiktok.svg", label: "TikTok", invert: true },
+  ];
+
+  const nav = [
+    { label: dict.nav.properties, href: `/${locale}/properties` },
+    { label: dict.nav.forSale, href: `/${locale}/properties/for-sale` },
+    { label: dict.nav.forRent, href: `/${locale}/properties/for-rent` },
+    { label: dict.nav.services, href: `/${locale}/services` },
+    { label: dict.nav.about, href: `/${locale}/about` },
+    { label: dict.nav.contact, href: `/${locale}/contact` },
   ];
 
   return (
     <footer className="bg-ink-hard text-mist">
-      <div className="mx-auto max-w-[1440px] px-6 py-12 md:px-10 md:py-16">
-        <div className="grid gap-10 border-b border-line-light pb-10 md:grid-cols-12">
+      <div className="mx-auto max-w-[1440px] px-6 pb-10 pt-16 md:px-10 md:pt-20">
+        {/* Top: brand + statement */}
+        <div className="grid gap-12 border-b border-line-light pb-14 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
@@ -45,69 +41,30 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
                 />
               </span>
               <div className="flex flex-col leading-none">
-                <span className="font-sans text-sm font-semibold tracking-[0.3em]">
-                  LOCATION
-                </span>
+                <span className="font-sans text-sm font-semibold tracking-[0.3em]">LOCATION</span>
                 <span className="mt-1 text-[10px] tracking-[0.2em] text-mist/50">
                   REAL ESTATE — {locale === "ar" ? "قطر" : "QATAR"}
                 </span>
               </div>
             </div>
-            <p className="arabic mt-6 max-w-xs text-sm leading-7 text-mist/70">
-              {dict.meta.siteName}
-              <span className="mt-1 block text-mist/50">{t.tagline}</span>
+            <p className={`mt-6 max-w-xs text-sm leading-7 text-mist/70 ${locale === "ar" ? "arabic" : ""}`}>
+              {t.tagline}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className={`flex h-11 w-11 items-center justify-center rounded-full border transition-colors ${
-                    s.invert ? "border-mist/25 bg-mist text-ink hover:bg-gold" : "border-mist/25 hover:border-gold"
-                  }`}
-                >
-                  <Image
-                    src={s.src}
-                    alt=""
-                    width={18}
-                    height={18}
-                    className={s.invert ? "" : "opacity-80"}
-                  />
-                </a>
+          </div>
+
+          <div className="md:col-span-3">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-mist/40">{t.companyCol}</h3>
+            <div className="flex flex-col gap-3 text-sm">
+              {nav.map((n) => (
+                <Link key={n.href} href={n.href} className="text-mist/60 transition-colors hover:text-mist">
+                  {n.label}
+                </Link>
               ))}
             </div>
           </div>
 
-          <div className="md:col-span-3">
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-mist/40">
-              {t.propertiesCol}
-            </h3>
-            <div className="flex flex-col gap-3">
-              {colLink(`/${locale}/properties`, dict.nav.properties)}
-              {colLink(`/${locale}/properties/for-sale`, dict.nav.forSale)}
-              {colLink(`/${locale}/properties/for-rent`, dict.nav.forRent)}
-              {colLink(`/${locale}/list-your-property`, dict.nav.list)}
-            </div>
-          </div>
-
-          <div className="md:col-span-2">
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-mist/40">
-              {t.companyCol}
-            </h3>
-            <div className="flex flex-col gap-3">
-              {colLink(`/${locale}/about`, dict.nav.about)}
-              {colLink(`/${locale}/services`, dict.nav.services)}
-              {colLink(`/${locale}/contact`, dict.nav.contact)}
-            </div>
-          </div>
-
-          <div className="md:col-span-2">
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-mist/40">
-              {t.contactCol}
-            </h3>
+          <div className="md:col-span-4">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-mist/40">{t.contactCol}</h3>
             <div className="flex flex-col gap-3 text-sm text-mist/70">
               <a href={`tel:${site.phoneRaw}`} className="transition-colors hover:text-mist" dir="ltr">
                 {site.phoneDisplay}
@@ -115,18 +72,40 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
               <a href={`mailto:${site.email}`} className="break-all transition-colors hover:text-mist" dir="ltr">
                 {site.email}
               </a>
-              <span>{locale === "ar" ? "الدوحة، قطر" : "Doha, Qatar"}</span>
-              <span className="text-mist/50">{locale === "ar" ? "شارع الجزيرة العربية" : "Al Jazira Al Arabiya St"}</span>
+              <span>{locale === "ar" ? site.addressAr : site.addressEn}</span>
+              <span className="text-mist/50">{dict.hero.license}</span>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
+                    s.invert ? "border-mist/25 bg-mist text-ink hover:bg-gold" : "border-mist/25 hover:border-gold"
+                  }`}
+                >
+                  <Image
+                    src={s.src}
+                    alt=""
+                    width={17}
+                    height={17}
+                    className={s.invert ? "" : "opacity-80"}
+                  />
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-center md:flex-row md:text-start">
+        {/* Bottom legal */}
+        <div className="flex flex-col items-center justify-between gap-3 pt-8 text-center md:flex-row md:text-start">
           <p className="text-xs text-mist/45">
-            {t.copyright} · {dict.meta.siteName}
+            {t.copyright} · {year} · {locale === "ar" ? "قطر" : "Qatar"}
           </p>
-          <p className="text-xs text-mist/45">{dict.hero.license}</p>
-          <p className="text-xs text-mist/30">{locale === "ar" ? "قطر" : "Qatar"} · {year}</p>
+          <p className="text-xs text-mist/45">{dict.meta.siteName}</p>
         </div>
       </div>
     </footer>
