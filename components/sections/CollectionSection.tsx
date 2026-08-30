@@ -97,9 +97,15 @@ export function CollectionSection({
                   <p className="mt-auto pt-3 text-lg font-medium text-ink tabular-nums">
                     {formatPrice(p.price, locale) ?? (locale === "ar" ? "عند الطلب" : "On request")}
                   </p>
-                  <p className="mt-1 text-sm text-stone">
-                    {formatArea(p.area, locale)}
-                    {p.bedrooms ? ` · ${p.bedrooms} ${locale === "ar" ? "غرف" : "beds"}` : ""}
+                  <div className="mt-1 flex items-center gap-4 text-sm text-stone">
+                    <span className="tabular-nums">
+                      {formatArea(p.area, locale)}
+                      {p.bedrooms ? ` · ${p.bedrooms} ${locale === "ar" ? "غرف" : "beds"} · ${p.bathrooms ?? ""} ${locale === "ar" ? "حمامات" : "baths"}` : ""}
+                    </span>
+                  </div>
+                  <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-burgundy">
+                    {locale === "ar" ? "عرض العقار" : "View property"}
+                    <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
                   </p>
                 </div>
               </Link>
@@ -113,23 +119,31 @@ export function CollectionSection({
 
 function PropertyMeta({ p, locale }: { p: Property; locale: Locale }) {
   return (
-    <div className="mt-4 flex flex-wrap items-start justify-between gap-x-4 gap-y-2 border-t border-line pt-4">
-      <div className="min-w-0 flex-1">
+    <div className="mt-4 grid gap-x-6 gap-y-4 border-t border-line pt-5 md:grid-cols-2">
+      <div className="min-w-0">
         <p className="text-[11px] uppercase tracking-[0.24em] text-gold">
           {getPurposeLabel(locale)(p.purpose)} — {getPropertyTypeLabel(locale)(p.propertyType)} —{" "}
           {getDistrictLabels(locale, p)}
         </p>
-        <h3 className={`mt-1 text-2xl text-ink md:text-3xl ${locale === "ar" ? "arabic" : ""}`}>
+        <h3 className={`mt-2 text-2xl text-ink md:text-3xl ${locale === "ar" ? "arabic" : ""}`}>
           {locale === "ar" ? p.titleAr : p.titleEn}
         </h3>
-        <p className="mt-1 text-sm text-stone">
-          {formatArea(p.area, locale)}
-          {p.bedrooms ? ` · ${p.bedrooms} ${locale === "ar" ? "غرف" : "beds"}` : ""}
+        <p className="mt-2 text-xs tracking-wide text-stone" dir="ltr">
+          {locale === "ar" ? "المرجع" : "Ref"} {p.referenceNumber}
         </p>
       </div>
-      <p className="shrink-0 text-right text-2xl font-medium text-ink tabular-nums md:text-3xl">
-        {formatPrice(p.price, locale) ?? (locale === "ar" ? "عند الطلب" : "On request")}
-      </p>
+      <div className="flex flex-col items-start justify-between gap-3 md:items-end md:text-end">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-ink">
+          <span className="tabular-nums">{formatArea(p.area, locale) ?? "—"}</span>
+          <span className="tabular-nums">
+            {p.bedrooms ?? "—"} {locale === "ar" ? "غرف" : "beds"} · {p.bathrooms ?? "—"}{" "}
+            {locale === "ar" ? "حمامات" : "baths"}
+          </span>
+        </div>
+        <p className="text-2xl font-medium text-ink tabular-nums md:text-3xl">
+          {formatPrice(p.price, locale) ?? (locale === "ar" ? "عند الطلب" : "On request")}
+        </p>
+      </div>
     </div>
   );
 }

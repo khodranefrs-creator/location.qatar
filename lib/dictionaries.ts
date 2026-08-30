@@ -99,6 +99,14 @@ export type Dict = {
     subtitle: string;
     view: string;
     properties: string;
+    viewAll: string;
+  };
+  areasPage: {
+    title: string;
+    subtitle: string;
+    browse: string;
+    properties: string;
+    allAreas: string;
   };
   cinematic: {
     eyebrow: string;
@@ -318,6 +326,14 @@ const ar: Dict = {
     subtitle: "مجموعة مختارة من المناطق الرئيسية داخل قطر.",
     view: "تصفح المنطقة",
     properties: "عقار",
+    viewAll: "تصفح جميع المناطق",
+  },
+  areasPage: {
+    title: "عقاراتنا حسب المنطقة",
+    subtitle: "اختر منطقة لعرض العقارات المتاحة للبيع والإيجار فيها.",
+    browse: "تصفح العقارات في",
+    properties: "عقار",
+    allAreas: "جميع المناطق",
   },
   cinematic: {
     eyebrow: "حضور مميز",
@@ -539,6 +555,14 @@ const en: Dict = {
     subtitle: "A curated selection of key areas across Qatar.",
     view: "Browse area",
     properties: "properties",
+    viewAll: "Browse all areas",
+  },
+  areasPage: {
+    title: "Our Properties by Area",
+    subtitle: "Choose an area to view the properties available there for sale and rent.",
+    browse: "Browse properties in",
+    properties: "properties",
+    allAreas: "All areas",
   },
   cinematic: {
     eyebrow: "Presence",

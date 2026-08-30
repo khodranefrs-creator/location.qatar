@@ -83,14 +83,18 @@ export function FeaturedSection({
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-6 border-t border-line pt-6">
+            <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6 sm:grid-cols-4">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.2em] text-stone">{dict.propertyDetail.areaLabel}</p>
-                <p className="mt-1 text-lg font-medium text-ink tabular-nums">{formatArea(p.area, locale)}</p>
+                <p className="mt-1 text-lg font-medium text-ink tabular-nums">{formatArea(p.area, locale) ?? "—"}</p>
               </div>
               <div>
                 <p className="text-[11px] uppercase tracking-[0.2em] text-stone">{locale === "ar" ? "الغرف" : "Beds"}</p>
                 <p className="mt-1 text-lg font-medium text-ink tabular-nums">{p.bedrooms ?? "—"}</p>
+              </div>
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.2em] text-stone">{locale === "ar" ? "الحمامات" : "Baths"}</p>
+                <p className="mt-1 text-lg font-medium text-ink tabular-nums">{p.bathrooms ?? "—"}</p>
               </div>
               <div>
                 <p className="text-[11px] uppercase tracking-[0.2em] text-stone">{locale === "ar" ? "المرجع" : "Ref"}</p>

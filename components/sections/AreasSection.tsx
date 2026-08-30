@@ -79,6 +79,16 @@ export function AreasSection({
             </Link>
           ))}
         </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            href={`/${locale}/areas`}
+            className="group inline-flex items-center gap-2 border-b border-ink/30 pb-1 text-sm tracking-wide text-ink transition-colors hover:border-burgundy hover:text-burgundy"
+          >
+            {t.viewAll}
+            <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
+          </Link>
+        </div>
       </Container>
     </section>
   );
