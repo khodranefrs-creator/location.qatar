@@ -71,7 +71,8 @@ export function AreasSection({
                   {locale === "ar" ? a.ar : a.en}
                 </span>
                 <p className="mt-1 text-xs tracking-wide text-stone">
-                  {countByDistrict(a.ar)} {t.properties}
+                  {countByDistrict(a.ar)} {t.properties} ·{" "}
+                  <span className="text-burgundy group-hover:underline">{t.view}</span>
                 </p>
               </div>
               <ArrowIcon className="text-ink/30 transition-all group-hover:translate-x-1 group-hover:text-burgundy rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />

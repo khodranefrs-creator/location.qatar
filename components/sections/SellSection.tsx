@@ -34,7 +34,7 @@ export function SellSection({
             <p className={`mt-5 max-w-md text-base leading-relaxed text-mist/70 md:text-lg ${locale === "ar" ? "arabic" : ""}`}>
               {s.description}
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-6">
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <a
                 href={`/${locale}/list-your-property`}
                 className="group inline-flex items-center gap-3 bg-mist px-8 py-4 text-sm font-medium text-ink transition-colors hover:bg-gold-soft"
@@ -44,11 +44,25 @@ export function SellSection({
               </a>
               <Link
                 href={whatsappUrl(waMsg, locale)}
-                className="group inline-flex items-center gap-2 border-b border-mist/40 pb-1 text-sm tracking-wide text-mist/85 transition-colors hover:border-gold hover:text-gold-soft"
+                className="inline-flex items-center gap-3 border border-mist/50 px-8 py-4 text-sm font-medium text-mist transition-colors hover:border-gold hover:text-gold-soft"
               >
-                {s.secondary} · {site.phoneDisplay}
-                <ArrowIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
+                <Image
+                  src="/images/brand/whatsapp.svg"
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="opacity-90"
+                />
+                {s.secondary}
               </Link>
+            </div>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-2 border-t border-mist/20 pt-6">
+              <span className="text-[11px] uppercase tracking-[0.22em] text-mist/50">
+                {locale === "ar" ? "أو اتصل بنا مباشرة" : "Or call us directly"}
+              </span>
+              <a href={`tel:${site.phoneRaw}`} dir="ltr" className="text-3xl font-semibold text-paper tabular-nums transition-colors hover:text-gold-soft">
+                {site.phoneDisplay}
+              </a>
             </div>
           </div>
 

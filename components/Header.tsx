@@ -42,13 +42,13 @@ export function Header({
   const otherPath = `/${otherLocale}${suffix}`;
 
   const navLinks = [
-    { label: dict.nav.properties, href: `/${locale}/properties` },
-    { label: dict.nav.buy, href: `/${locale}/properties/for-sale` },
-    { label: dict.nav.rent, href: `/${locale}/properties/for-rent` },
-    { label: dict.nav.areas, href: `/${locale}/properties` },
-    { label: dict.nav.services, href: `/${locale}/services` },
-    { label: dict.nav.about, href: `/${locale}/about` },
-    { label: dict.nav.contact, href: `/${locale}/contact` },
+    { id: "properties", label: dict.nav.properties, href: `/${locale}/properties` },
+    { id: "buy", label: dict.nav.buy, href: `/${locale}/properties/for-sale` },
+    { id: "rent", label: dict.nav.rent, href: `/${locale}/properties/for-rent` },
+    { id: "areas", label: dict.nav.areas, href: `/${locale}/properties` },
+    { id: "services", label: dict.nav.services, href: `/${locale}/services` },
+    { id: "about", label: dict.nav.about, href: `/${locale}/about` },
+    { id: "contact", label: dict.nav.contact, href: `/${locale}/contact` },
   ];
 
   return (
@@ -83,7 +83,7 @@ export function Header({
             const active = pathname === l.href;
             return (
               <Link
-                key={l.href}
+                key={l.id}
                 href={l.href}
                 className={`text-[13px] tracking-wide transition-colors ${
                   onDark ? "text-mist/85 hover:text-paper" : "text-ink/70 hover:text-ink"
@@ -191,7 +191,7 @@ export function Header({
             const active = pathname === l.href;
             return (
               <Link
-                key={l.href}
+                key={l.label}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className={`border-b border-line py-4 text-2xl font-medium transition-colors ${

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, Eyebrow, ArrowIcon } from "@/components/ui";
 import { getPropertyBySlug } from "@/lib/properties";
-import { formatPrice, formatArea, getPurposeLabel, getDistrictLabels } from "@/lib/utils";
+import { formatPrice, formatArea, getPurposeLabel, getPropertyTypeLabel, getDistrictLabels } from "@/lib/utils";
 import type { Dict } from "@/components/types";
 import type { Locale } from "@/lib/dictionaries";
 import type { Property } from "@/lib/properties";
@@ -72,29 +72,34 @@ export function CollectionSection({
             </Link>
           )}
 
-          <div className="flex flex-col gap-10 lg:col-span-5">
+          <div className="flex flex-col gap-12 lg:col-span-5">
             {rest.map((p) => (
-              <Link key={p.id} href={`/${locale}/properties/${p.slug}`} className="group flex gap-6">
-                <div className="w-32 shrink-0 overflow-hidden bg-ink-soft sm:w-40">
+              <Link key={p.id} href={`/${locale}/properties/${p.slug}`} className="group flex gap-6 sm:gap-8">
+                <div className="w-36 shrink-0 overflow-hidden bg-ink-soft sm:w-48">
                   <Image
                     src={p.images[0]}
                     alt={locale === "ar" ? p.titleAr : p.titleEn}
                     width={640}
                     height={740}
-                    sizes="(min-width: 640px) 160px, 128px"
+                    sizes="(min-width: 640px) 192px, 144px"
                     className="aspect-[4/5] h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
-                <div className="flex-1 border-t border-line pt-3">
+                <div className="flex flex-1 flex-col border-t border-line pt-4">
                   <p className="text-[11px] uppercase tracking-[0.24em] text-gold">
-                    {getPurposeLabel(locale)(p.purpose)} — {getDistrictLabels(locale, p)}
+                    {getPurposeLabel(locale)(p.purpose)} — {getPropertyTypeLabel(locale)(p.propertyType)}
                   </p>
                   <h3 className={`mt-2 text-xl text-ink md:text-2xl ${locale === "ar" ? "arabic" : ""}`}>
                     {locale === "ar" ? p.titleAr : p.titleEn}
                   </h3>
-                  <p className="mt-2 text-sm text-stone tabular-nums">
+                  <p className="mt-1 text-sm text-stone">{getDistrictLabels(locale, p)}</p>
+                  <p className="mt-auto pt-3 text-lg font-medium text-ink tabular-nums">
                     {formatPrice(p.price, locale) ?? (locale === "ar" ? "عند الطلب" : "On request")}
+                  </p>
+                  <p className="mt-1 text-sm text-stone">
+                    {formatArea(p.area, locale)}
+                    {p.bedrooms ? ` · ${p.bedrooms} ${locale === "ar" ? "غرف" : "beds"}` : ""}
                   </p>
                 </div>
               </Link>
@@ -108,10 +113,11 @@ export function CollectionSection({
 
 function PropertyMeta({ p, locale }: { p: Property; locale: Locale }) {
   return (
-    <div className="mt-4 flex items-start justify-between gap-4 border-t border-line pt-4">
-      <div>
+    <div className="mt-4 flex flex-wrap items-start justify-between gap-x-4 gap-y-2 border-t border-line pt-4">
+      <div className="min-w-0 flex-1">
         <p className="text-[11px] uppercase tracking-[0.24em] text-gold">
-          {getPurposeLabel(locale)(p.purpose)} — {getDistrictLabels(locale, p)}
+          {getPurposeLabel(locale)(p.purpose)} — {getPropertyTypeLabel(locale)(p.propertyType)} —{" "}
+          {getDistrictLabels(locale, p)}
         </p>
         <h3 className={`mt-1 text-2xl text-ink md:text-3xl ${locale === "ar" ? "arabic" : ""}`}>
           {locale === "ar" ? p.titleAr : p.titleEn}
@@ -121,7 +127,7 @@ function PropertyMeta({ p, locale }: { p: Property; locale: Locale }) {
           {p.bedrooms ? ` · ${p.bedrooms} ${locale === "ar" ? "غرف" : "beds"}` : ""}
         </p>
       </div>
-      <p className="shrink-0 text-right text-xl font-medium text-ink tabular-nums md:text-2xl">
+      <p className="shrink-0 text-right text-2xl font-medium text-ink tabular-nums md:text-3xl">
         {formatPrice(p.price, locale) ?? (locale === "ar" ? "عند الطلب" : "On request")}
       </p>
     </div>
