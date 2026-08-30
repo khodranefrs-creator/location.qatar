@@ -17,8 +17,8 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
 
   const nav = [
     { label: dict.nav.properties, href: `/${locale}/properties` },
-    { label: dict.nav.forSale, href: `/${locale}/properties/for-sale` },
-    { label: dict.nav.forRent, href: `/${locale}/properties/for-rent` },
+    { label: dict.nav.buy, href: `/${locale}/properties/for-sale` },
+    { label: dict.nav.rent, href: `/${locale}/properties/for-rent` },
     { label: dict.nav.services, href: `/${locale}/services` },
     { label: dict.nav.about, href: `/${locale}/about` },
     { label: dict.nav.contact, href: `/${locale}/contact` },
@@ -27,26 +27,24 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
   return (
     <footer className="bg-ink-hard text-mist">
       <div className="mx-auto max-w-[1440px] px-6 pb-10 pt-16 md:px-10 md:pt-20">
-        {/* Top: brand + statement */}
         <div className="grid gap-12 border-b border-line-light pb-14 md:grid-cols-12">
+          {/* Brand + statement */}
           <div className="md:col-span-5">
-            <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
-                <Image
-                  src="/images/brand/logo-burgundy.png"
-                  alt={locale === "ar" ? "لوكيشن للعقارات" : "Location Real Estate"}
-                  width={192}
-                  height={192}
-                  className="h-10 w-10 object-contain"
-                />
-              </span>
-              <div className="flex flex-col leading-none">
+            <Link href={`/${locale}`} className="inline-flex items-center gap-3">
+              <Image
+                src="/images/brand/logo.png"
+                alt={locale === "ar" ? site.nameAr : site.nameEn}
+                width={48}
+                height={48}
+                className="h-11 w-11 object-contain"
+              />
+              <span className="flex flex-col leading-none">
                 <span className="font-sans text-sm font-semibold tracking-[0.3em]">LOCATION</span>
                 <span className="mt-1 text-[10px] tracking-[0.2em] text-mist/50">
                   REAL ESTATE — {locale === "ar" ? "قطر" : "QATAR"}
                 </span>
-              </div>
-            </div>
+              </span>
+            </Link>
             <p className={`mt-6 max-w-xs text-sm leading-7 text-mist/70 ${locale === "ar" ? "arabic" : ""}`}>
               {t.tagline}
             </p>
@@ -100,7 +98,6 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
           </div>
         </div>
 
-        {/* Bottom legal */}
         <div className="flex flex-col items-center justify-between gap-3 pt-8 text-center md:flex-row md:text-start">
           <p className="text-xs text-mist/45">
             {t.copyright} · {year} · {locale === "ar" ? "قطر" : "Qatar"}

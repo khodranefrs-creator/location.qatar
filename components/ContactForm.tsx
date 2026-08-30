@@ -22,14 +22,16 @@ export function ContactForm({ locale, dict }: { locale: Locale; dict: Dict }) {
     setStatus("sent");
   };
 
-  const inputCls =
-    "w-full border border-ink/15 bg-paper px-4 py-3.5 text-sm text-ink placeholder:text-stone/70 focus:border-gold focus:outline-none transition-colors";
+  const fieldCls =
+    "w-full border-0 border-b border-ink/20 bg-transparent px-0 pb-3 pt-1 text-base text-ink placeholder:text-stone/50 focus:border-ink focus:outline-none focus:ring-0 transition-colors";
+
+  const labelCls = "mb-2 block text-xs font-medium uppercase tracking-wider text-stone";
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5">
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="space-y-8">
+      <div className="grid gap-8 sm:grid-cols-2">
         <div>
-          <label htmlFor="cf-name" className="mb-2 block text-xs font-medium uppercase tracking-wider text-mist/60">
+          <label htmlFor="cf-name" className={labelCls}>
             {f.name}
           </label>
           <input
@@ -38,12 +40,12 @@ export function ContactForm({ locale, dict }: { locale: Locale; dict: Dict }) {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className={inputCls}
+            className={fieldCls}
             placeholder={f.name}
           />
         </div>
         <div>
-          <label htmlFor="cf-phone" className="mb-2 block text-xs font-medium uppercase tracking-wider text-mist/60">
+          <label htmlFor="cf-phone" className={labelCls}>
             {f.phone}
           </label>
           <input
@@ -53,43 +55,44 @@ export function ContactForm({ locale, dict }: { locale: Locale; dict: Dict }) {
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className={inputCls}
+            className={fieldCls}
             placeholder="+974 ..."
           />
         </div>
       </div>
       <div>
-        <label htmlFor="cf-message" className="mb-2 block text-xs font-medium uppercase tracking-wider text-mist/60">
+        <label htmlFor="cf-message" className={labelCls}>
           {f.message}
         </label>
         <textarea
           id="cf-message"
           required
-          rows={5}
+          rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className={inputCls}
+          className={`${fieldCls} resize-none`}
           placeholder={f.message}
         />
       </div>
 
-      <button
-        type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 bg-mist px-7 py-4 text-sm font-medium text-ink transition-colors hover:bg-gold-soft sm:w-auto"
-      >
-        {f.submit}
-      </button>
-
-      {status === "sent" && (
-        <p role="status" className="text-sm text-ink">
-          {f.success}
-        </p>
-      )}
-      {status === "error" && (
-        <p role="alert" className="text-sm text-red-600">
-          {f.error}
-        </p>
-      )}
+      <div className="flex flex-wrap items-center gap-6">
+        <button
+          type="submit"
+          className="inline-flex items-center justify-center gap-2 bg-ink px-8 py-4 text-sm font-medium text-mist transition-colors hover:bg-burgundy"
+        >
+          {f.submit}
+        </button>
+        {status === "sent" && (
+          <p role="status" className="text-sm text-ink">
+            {f.success}
+          </p>
+        )}
+        {status === "error" && (
+          <p role="alert" className="text-sm text-red-600">
+            {f.error}
+          </p>
+        )}
+      </div>
     </form>
   );
 }

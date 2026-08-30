@@ -15,6 +15,10 @@ export type Dict = {
     properties: string;
     forSale: string;
     forRent: string;
+    buy: string;
+    rent: string;
+    sell: string;
+    areas: string;
     services: string;
     list: string;
     about: string;
@@ -30,6 +34,14 @@ export type Dict = {
     ctaSecondary: string;
     license: string;
     scroll: string;
+    market: string;
+  };
+  collection: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    viewAll: string;
+    area: string;
   };
   search: {
     title: string;
@@ -218,6 +230,10 @@ const ar: Dict = {
     properties: "العقارات",
     forSale: "للبيع",
     forRent: "للإيجار",
+    buy: "شراء",
+    rent: "إيجار",
+    sell: "بيع",
+    areas: "المناطق",
     services: "الخدمات",
     list: "اعرض عقارك",
     about: "عن لوكيشن",
@@ -232,7 +248,15 @@ const ar: Dict = {
     cta: "استكشف العقارات",
     ctaSecondary: "اعرض عقارك لدينا",
     license: "ترخيص عقاري رقم 40",
+    market: "الدوحة — قطر",
     scroll: "اكتشف المزيد",
+  },
+  collection: {
+    eyebrow: "مجموعة مختارة",
+    title: "من كتالوجنا الحالي",
+    subtitle: "اختيار حرصنا عليه من العقارات المتاحة داخل قطر اليوم.",
+    viewAll: "عرض كل العقارات",
+    area: "منطقة",
   },
   search: {
     title: "ابحث عن عقارك",
@@ -427,6 +451,10 @@ const en: Dict = {
     properties: "Properties",
     forSale: "For Sale",
     forRent: "For Rent",
+    buy: "Buy",
+    rent: "Rent",
+    sell: "Sell",
+    areas: "Areas",
     services: "Services",
     list: "List Your Property",
     about: "About",
@@ -441,7 +469,15 @@ const en: Dict = {
     cta: "Explore Properties",
     ctaSecondary: "List Your Property",
     license: "Real Estate License No. 40",
+    market: "Doha — Qatar",
     scroll: "Discover more",
+  },
+  collection: {
+    eyebrow: "Selected",
+    title: "From our current catalogue",
+    subtitle: "A curated selection from the properties available in Qatar today.",
+    viewAll: "View all properties",
+    area: "Area",
   },
   search: {
     title: "Find your property",

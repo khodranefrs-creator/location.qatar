@@ -14,27 +14,32 @@ export function HeroSection({
 }) {
   const h = dict.hero;
   return (
-    <section className="relative flex min-h-[92svh] flex-col justify-end overflow-hidden bg-ink text-mist">
+    <section className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink text-mist">
       <Image
         src="/images/clean/banner-wide-b.png"
-        alt={h.eyebrow}
+        alt={h.subtitle}
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="object-cover object-center"
       />
-      {/* Legibility: darker at the top for the header, softer toward the copy */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/5 to-black/50" />
+      {/* Gradient keeps the architecture readable while grounding the anchor type */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/15 to-black/55" />
 
-      <div className="relative mx-auto w-full max-w-[1440px] px-5 pb-10 md:px-10 md:pb-14">
-        <div className="max-w-[56ch]">
-          <p className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.3em] text-gold-soft">
-            <span className="h-px w-8 bg-gold-soft/70" />
+      {/* Campaign headline — bottom-anchored, start-aligned */}
+      <div className="relative mx-auto w-full max-w-[1440px] px-6 pb-8 pt-32 md:px-10 md:pb-14">
+        <div className="max-w-[15ch]">
+          <p
+            className={`flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.3em] text-gold-soft ${
+              locale === "ar" ? "arabic" : ""
+            }`}
+          >
+            <span className="h-px w-10 bg-gold-soft/70" />
             {h.eyebrow}
           </p>
 
           <h1
-            className={`mt-6 text-[clamp(2.75rem,6vw,4.5rem)] leading-[1.02] tracking-tight text-paper ${
+            className={`mt-7 text-[clamp(2.5rem,6.5vw,5rem)] leading-[1.02] tracking-tight text-paper ${
               locale === "ar" ? "arabic font-bold" : "font-semibold"
             }`}
           >
@@ -43,33 +48,29 @@ export function HeroSection({
             {h.title2}
           </h1>
 
-          <p className={`mt-5 max-w-md text-base leading-relaxed text-mist/75 md:text-lg ${locale === "ar" ? "arabic" : ""}`}>
-            {h.subtitle}
-          </p>
-
           <div className="mt-9 flex flex-wrap items-center gap-6">
             <Link
               href={`/${locale}/properties`}
-              className="group inline-flex items-center gap-3 bg-mist px-8 py-4 text-sm font-medium text-ink transition-colors hover:bg-gold-soft"
+              className="group inline-flex items-center gap-3 bg-mist px-9 py-4 text-sm font-medium text-ink transition-colors hover:bg-gold-soft"
             >
               {h.cta}
               <ArrowIcon className="transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
             </Link>
-            <Link
-              href={`/${locale}/list-your-property`}
-              className="group inline-flex items-center gap-2 border-b border-mist/40 pb-1 text-sm tracking-wide text-mist/85 transition-colors hover:border-gold hover:text-gold-soft"
-            >
-              {h.ctaSecondary}
-              <ArrowIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
-            </Link>
           </div>
+        </div>
+      </div>
 
-          {/* Campaign registration line */}
-          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-2 border-t border-mist/25 pt-5 text-[12px] tracking-wide text-mist/65">
-            <span>{h.license}</span>
-            <span dir="ltr">{site.phoneDisplay}</span>
-            <span>{locale === "ar" ? site.addressAr : site.addressEn}</span>
-          </div>
+      {/* Campaign footer line — market + license + contact */}
+      <div className="relative border-t border-paper/20">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-6 py-5 text-[12px] tracking-[0.18em] text-paper/70 md:flex-row md:items-center md:justify-between md:px-10">
+          <span>
+            {h.market}
+            <span className="mx-3 text-paper/35">·</span>
+            {h.license}
+          </span>
+          <a href={`tel:${site.phoneRaw}`} dir="ltr" className="transition-colors hover:text-paper">
+            {site.phoneDisplay}
+          </a>
         </div>
       </div>
     </section>

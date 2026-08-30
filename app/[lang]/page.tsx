@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { dictionaries } from "@/lib/dictionaries";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { StatementSection } from "@/components/sections/StatementSection";
 import { FeaturedSection } from "@/components/sections/FeaturedSection";
+import { CollectionSection } from "@/components/sections/CollectionSection";
 import { AreasSection } from "@/components/sections/AreasSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { AboutSection } from "@/components/sections/AboutSection";
+import { CompanySection } from "@/components/sections/CompanySection";
+import { SellSection } from "@/components/sections/SellSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export async function generateMetadata({
@@ -35,10 +38,13 @@ export default async function Home({
   return (
     <main>
       <HeroSection locale={locale} dict={dict} />
+      <StatementSection locale={locale} dict={dict} />
       <FeaturedSection locale={locale} dict={dict} />
+      <CollectionSection locale={locale} dict={dict} />
       <AreasSection locale={locale} dict={dict} />
       <ServicesSection locale={locale} dict={dict} />
-      <AboutSection locale={locale} dict={dict} />
+      <CompanySection locale={locale} dict={dict} />
+      <SellSection locale={locale} dict={dict} />
       <ContactSection locale={locale} dict={dict} />
     </main>
   );
