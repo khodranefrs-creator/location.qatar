@@ -38,12 +38,13 @@ export function FeaturedSection({
   return (
     <section className="bg-paper py-24 md:py-32">
       <Container>
+        {/* Quiet chapter intro — the property is the hero, not the heading */}
         <Reveal>
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
             <div>
               <Eyebrow tone="gold">{f.eyebrow}</Eyebrow>
               <h2
-                className={`mt-4 max-w-xl text-3xl leading-[1.05] tracking-tight text-ink md:text-5xl ${
+                className={`mt-4 max-w-md text-2xl leading-tight tracking-tight text-ink md:text-4xl ${
                   locale === "ar" ? "arabic font-semibold" : "font-semibold"
                 }`}
               >
@@ -52,7 +53,7 @@ export function FeaturedSection({
             </div>
             <Link
               href={`/${locale}/properties`}
-              className="group inline-flex items-center gap-2 border-b border-ink/30 pb-1 text-sm tracking-wide text-ink transition-colors hover:border-burgundy hover:text-burgundy"
+              className="group inline-flex items-center gap-2 border-b border-ink/30 pb-1 text-sm tracking-wide text-stone transition-colors hover:border-burgundy hover:text-burgundy"
             >
               {f.viewAll}
               <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
@@ -62,114 +63,94 @@ export function FeaturedSection({
 
         {primary && (
           <Reveal className="mt-12">
-            <article className="grid gap-10 border-t border-line pt-10 lg:grid-cols-12 lg:gap-14">
-              {/* Tall portrait cinematic image */}
-              <div className="lg:col-span-7">
-                <Link
-                  href={`/${locale}/properties/${primary.slug}`}
-                  className="group relative block aspect-[4/5] overflow-hidden bg-ink-soft md:aspect-[16/11] lg:aspect-[4/5]"
-                >
-                  <Image
-                    src={PORTRAIT[primary.slug] ?? primary.images[0]}
-                    alt={locale === "ar" ? primary.titleAr : primary.titleEn}
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 56vw, 100vw"
-                    className="object-cover transition-transform duration-[1.6s] group-hover:scale-105"
-                  />
-                  <span className="absolute bottom-5 start-5 text-[11px] uppercase tracking-[0.26em] text-paper/85">
-                    {locale === "ar" ? "العقار المختار" : "Featured property"}
-                  </span>
-                </Link>
-              </div>
+            <article className="relative aspect-[4/5] w-full overflow-hidden bg-ink-soft sm:aspect-[16/12] lg:aspect-[21/10]">
+              <Link
+                href={`/${locale}/properties/${primary.slug}`}
+                className="group absolute inset-0 block"
+              >
+                <Image
+                  src={PORTRAIT[primary.slug] ?? primary.images[0]}
+                  alt={locale === "ar" ? primary.titleAr : primary.titleEn}
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-cover transition-transform duration-[1.8s] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/10" />
+              </Link>
 
-              {/* Typography/meta column */}
-              <div className="flex flex-col justify-center lg:col-span-5">
-                <p className="text-[11px] uppercase tracking-[0.28em] text-gold">
-                  {getPurposeLabel(locale)(primary.purpose)} · {getPropertyTypeLabel(locale)(primary.propertyType)}
-                </p>
-                <h3
-                  className={`mt-4 text-3xl leading-tight tracking-tight text-ink md:text-5xl ${
-                    locale === "ar" ? "arabic font-semibold" : "font-semibold"
-                  }`}
-                >
-                  {locale === "ar" ? primary.titleAr : primary.titleEn}
-                </h3>
-                <p className="mt-3 text-sm tracking-wide text-stone">{getDistrictLabels(locale, primary)} · Doha</p>
-
-                <p className={`mt-6 max-w-md text-base leading-relaxed text-stone ${locale === "ar" ? "arabic" : ""}`}>
-                  {locale === "ar" ? primary.descriptionAr : primary.descriptionEn}
-                </p>
-
-                <p className="mt-5 text-[11px] uppercase tracking-[0.22em] text-stone">
-                  {dict.propertyDetail.reference} ·{" "}
-                  <span className="font-medium tracking-normal text-ink/70" dir="ltr">
-                    {primary.referenceNumber}
-                  </span>
-                </p>
-
-                <div className="mt-9 grid max-w-md grid-cols-3 gap-6 border-y border-line py-6">
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-stone">{dict.propertyDetail.price}</p>
-                    <p className="mt-2 text-lg font-medium text-ink tabular-nums">
-                      {formatPrice(primary.price, locale) ?? (locale === "ar" ? "عند الطلب" : "On request")}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-stone">{dict.propertyDetail.areaLabel}</p>
-                    <p className="mt-2 text-lg font-medium text-ink tabular-nums">{formatArea(primary.area, locale)}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-stone">{locale === "ar" ? "النوع" : "Type"}</p>
-                    <p className="mt-2 text-lg font-medium text-ink">{getPropertyTypeLabel(locale)(primary.propertyType)}</p>
-                  </div>
+              {/* Elegant edge metadata plate over the image */}
+              <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-6 p-6 md:p-10 lg:p-14">
+                <div className="max-w-2xl">
+                  <p className="text-[11px] uppercase tracking-[0.28em] text-gold-soft">
+                    {getPurposeLabel(locale)(primary.purpose)} · {getPropertyTypeLabel(locale)(primary.propertyType)}
+                  </p>
+                  <h3
+                    className={`mt-3 text-3xl leading-tight text-paper md:text-5xl ${
+                      locale === "ar" ? "arabic font-bold" : "font-semibold"
+                    }`}
+                  >
+                    {locale === "ar" ? primary.titleAr : primary.titleEn}
+                  </h3>
+                  <p className="mt-2 text-sm tracking-wide text-paper/70">{getDistrictLabels(locale, primary)} · Doha</p>
                 </div>
 
-                <Link
-                  href={`/${locale}/properties/${primary.slug}`}
-                  className="group mt-8 inline-flex items-center gap-2 border-b border-ink/30 pb-1 text-sm tracking-wide text-ink transition-colors hover:border-burgundy hover:text-burgundy"
-                >
-                  {f.viewProperty}
-                  <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
-                </Link>
+                <div className="flex flex-col items-start gap-5 md:items-end">
+                  <div className="text-end">
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-paper/60">{dict.propertyDetail.price}</p>
+                    <p className="mt-1 text-2xl font-semibold text-paper tabular-nums md:text-3xl">
+                      {formatPrice(primary.price, locale) ?? (locale === "ar" ? "عند الطلب" : "On request")}
+                    </p>
+                    <p className="mt-1 text-xs tracking-wide text-paper/50">
+                      {formatArea(primary.area, locale)} ·{" "}
+                      <span dir="ltr">{primary.referenceNumber}</span>
+                    </p>
+                  </div>
+                  <Link
+                    href={`/${locale}/properties/${primary.slug}`}
+                    className="group inline-flex items-center gap-2 border-b border-paper/50 pb-1 text-sm tracking-wide text-paper transition-colors hover:border-gold hover:text-gold-soft"
+                  >
+                    {f.viewProperty}
+                    <ArrowIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
+                  </Link>
+                </div>
               </div>
             </article>
           </Reveal>
         )}
 
-        {/* Supporting properties as slender editorial entries */}
+        {/* Supporting properties as slim photographic entries */}
         {rest.length > 0 && (
           <Reveal className="mt-14">
-            <div className="border-t border-line">
+            <div className="grid gap-8 md:grid-cols-2">
               {rest.map((p) => (
                 <Link
                   key={p.id}
                   href={`/${locale}/properties/${p.slug}`}
-                  className="group grid grid-cols-[1fr_auto] items-center gap-6 border-b border-line py-6 md:grid-cols-[220px_1fr_auto] md:gap-10"
+                  className="group"
                 >
-                  <div className="relative hidden aspect-[16/10] overflow-hidden bg-ink-soft md:block">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-ink-soft">
                     <Image
                       src={LANDSCAPE[p.slug] ?? p.images[0]}
                       alt={locale === "ar" ? p.titleAr : p.titleEn}
                       fill
-                      sizes="220px"
-                      className="object-cover transition-transform duration-[1.4s] group-hover:scale-105"
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
                       loading="lazy"
                     />
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-gold">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    <p className="absolute bottom-4 start-4 text-[11px] uppercase tracking-[0.26em] text-gold-soft">
                       {getPurposeLabel(locale)(p.purpose)} · {getDistrictLabels(locale, p)}
                     </p>
-                    <h4 className={`mt-1 text-xl text-ink md:text-2xl ${locale === "ar" ? "arabic" : ""}`}>
+                  </div>
+                  <div className="mt-4 flex items-start justify-between gap-4 border-t border-line pt-4">
+                    <h4 className={`text-xl text-ink md:text-2xl ${locale === "ar" ? "arabic" : ""}`}>
                       {locale === "ar" ? p.titleAr : p.titleEn}
                     </h4>
-                    <p className="mt-1 text-sm text-stone tabular-nums">
+                    <p className="shrink-0 text-lg font-medium text-ink tabular-nums">
                       {formatPrice(p.price, locale) ?? (locale === "ar" ? "عند الطلب" : "On request")}
-                      {p.area ? ` · ${formatArea(p.area, locale)}` : ""}
                     </p>
                   </div>
-                  <ArrowIcon className="mb-1 text-ink/40 transition-all group-hover:translate-x-1 group-hover:text-burgundy rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
                 </Link>
               ))}
             </div>

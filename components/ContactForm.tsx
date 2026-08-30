@@ -29,7 +29,7 @@ export function ContactForm({ locale, dict }: { locale: Locale; dict: Dict }) {
     <form onSubmit={onSubmit} className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="cf-name" className="mb-2 block text-xs font-medium uppercase tracking-wider text-stone">
+          <label htmlFor="cf-name" className="mb-2 block text-xs font-medium uppercase tracking-wider text-mist/60">
             {f.name}
           </label>
           <input
@@ -43,7 +43,7 @@ export function ContactForm({ locale, dict }: { locale: Locale; dict: Dict }) {
           />
         </div>
         <div>
-          <label htmlFor="cf-phone" className="mb-2 block text-xs font-medium uppercase tracking-wider text-stone">
+          <label htmlFor="cf-phone" className="mb-2 block text-xs font-medium uppercase tracking-wider text-mist/60">
             {f.phone}
           </label>
           <input
@@ -59,7 +59,7 @@ export function ContactForm({ locale, dict }: { locale: Locale; dict: Dict }) {
         </div>
       </div>
       <div>
-        <label htmlFor="cf-message" className="mb-2 block text-xs font-medium uppercase tracking-wider text-stone">
+        <label htmlFor="cf-message" className="mb-2 block text-xs font-medium uppercase tracking-wider text-mist/60">
           {f.message}
         </label>
         <textarea
@@ -75,7 +75,7 @@ export function ContactForm({ locale, dict }: { locale: Locale; dict: Dict }) {
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 bg-ink px-7 py-4 text-sm font-medium text-mist transition-colors hover:bg-gold hover:text-ink sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 bg-mist px-7 py-4 text-sm font-medium text-ink transition-colors hover:bg-gold-soft sm:w-auto"
       >
         {f.submit}
       </button>

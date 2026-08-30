@@ -34,6 +34,7 @@ export function Header({
 
   const isHome = pathname === `/${locale}`;
   const scrolled = solid || !isHome;
+  const onDark = isHome && !scrolled && !open;
 
   const otherLocale: Locale = locale === "ar" ? "en" : "ar";
   const suffix = pathname === `/${locale}` ? "" : pathname.slice(locale.length + 1);
@@ -46,8 +47,6 @@ export function Header({
     { label: dict.nav.about, href: `/${locale}/about` },
     { label: dict.nav.contact, href: `/${locale}/contact` },
   ];
-
-  const onDark = false;
 
   return (
     <header

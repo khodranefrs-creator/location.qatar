@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { dictionaries } from "@/lib/dictionaries";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { SearchSection } from "@/components/sections/SearchSection";
 import { FeaturedSection } from "@/components/sections/FeaturedSection";
 import { AreasSection } from "@/components/sections/AreasSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { SellSection } from "@/components/sections/SellSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export async function generateMetadata({
@@ -37,12 +35,10 @@ export default async function Home({
   return (
     <main>
       <HeroSection locale={locale} dict={dict} />
-      <SearchSection locale={locale} dict={dict} />
       <FeaturedSection locale={locale} dict={dict} />
       <AreasSection locale={locale} dict={dict} />
       <ServicesSection locale={locale} dict={dict} />
       <AboutSection locale={locale} dict={dict} />
-      <SellSection locale={locale} dict={dict} />
       <ContactSection locale={locale} dict={dict} />
     </main>
   );
