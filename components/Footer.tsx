@@ -31,8 +31,8 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dict }) {
 
   return (
     <footer className="bg-ink-hard text-mist">
-      <div className="mx-auto max-w-[1440px] px-6 py-16 md:px-10 md:py-20">
-        <div className="grid gap-12 border-b border-line-light pb-14 md:grid-cols-12">
+      <div className="mx-auto max-w-[1440px] px-6 py-12 md:px-10 md:py-16">
+        <div className="grid gap-10 border-b border-line-light pb-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white">

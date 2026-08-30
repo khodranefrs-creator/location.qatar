@@ -14,35 +14,37 @@ export function HeroSection({
   const h = dict.hero;
   return (
     <section
-      className="relative flex min-h-[88svh] min-h-[560px] flex-col justify-end overflow-hidden"
+      className="relative flex min-h-[80svh] min-h-[600px] flex-col justify-end overflow-hidden lg:min-h-[90svh]"
       aria-label={h.title1 + " " + h.title2}
     >
       <Image
-        src="/images/hero/hero-1.png"
+        src="/images/hero/banner-wide-b.png"
         alt={h.eyebrow}
         fill
         priority
         sizes="100vw"
         className="object-cover"
       />
-      {/* Subdued cinematic overlay, heavier at the text anchor */}
+      {/* Cinematic overlay, heavier at the text anchor */}
       <div
-        className={`absolute inset-0 bg-black/45 ${
+        className={`absolute inset-0 bg-black/40 ${
           locale === "ar"
-            ? "bg-gradient-to-r from-black/15 via-black/40 to-black/75"
-            : "bg-gradient-to-l from-black/15 via-black/40 to-black/75"
+            ? "bg-gradient-to-r from-black/10 via-black/35 to-black/75"
+            : "bg-gradient-to-l from-black/10 via-black/35 to-black/75"
         }`}
       />
+      {/* Soft bottom fade into the page */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 to-transparent" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 pb-16 pt-40 md:px-10 md:pb-20">
-        <div className="max-w-2xl md:max-w-2xl lg:max-w-3xl text-start">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 pb-14 pt-32 md:px-10 md:pb-20">
+        <div className="max-w-2xl md:max-w-3xl text-start">
           <p className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.3em] text-gold-soft">
             <span className="h-px w-8 bg-gold" />
             {h.eyebrow}
           </p>
 
           <h1
-            className={`mt-7 text-[clamp(3rem,8.5vw,7rem)] leading-[0.98] tracking-tight text-mist ${
+            className={`mt-7 text-[clamp(2.4rem,8.5vw,5.5rem)] leading-[0.98] tracking-tight text-mist md:text-[clamp(3.5rem,7vw,5.5rem)] ${
               locale === "ar" ? "arabic font-bold" : "font-semibold"
             }`}
           >
@@ -52,14 +54,14 @@ export function HeroSection({
           </h1>
 
           <p
-            className={`mt-7 max-w-md text-base leading-relaxed text-mist/75 md:text-lg ${
+            className={`mt-6 max-w-md text-base leading-relaxed text-mist/80 md:text-lg ${
               locale === "ar" ? "arabic" : ""
             }`}
           >
             {h.subtitle}
           </p>
 
-          <div className="mt-11 flex flex-wrap items-center gap-7">
+          <div className="mt-10 flex flex-wrap items-center gap-7">
             <a
               href={`/${locale}/properties`}
               className="group inline-flex items-center gap-3 bg-mist px-8 py-4 text-sm font-medium text-ink transition-colors hover:bg-gold-soft"
@@ -76,9 +78,15 @@ export function HeroSection({
             </Link>
           </div>
 
-          <p className="mt-14 inline-flex items-center gap-2 border-s-2 border-gold ps-3 text-[11px] uppercase tracking-[0.22em] text-mist/55">
-            {h.license}
-          </p>
+          <div className="mt-12 flex items-center gap-8">
+            <p className="inline-flex items-center gap-2 border-s-2 border-gold ps-3 text-[11px] uppercase tracking-[0.22em] text-mist/55">
+              {h.license}
+            </p>
+            <p className="hidden items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-mist/45 md:inline-flex">
+              <span className="h-px w-6 bg-mist/40" />
+              {h.scroll}
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -55,7 +55,7 @@ export function Header({
         scrolled && !open ? "border-b border-line bg-mist/95 backdrop-blur-md" : "border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 md:h-20 md:px-10">
+      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 md:h-20 md:px-10 xl:h-24">
         {/* Language (desktop start) hidden in mobile menu */}
         <div className="hidden items-center md:flex md:flex-1 md:justify-start">
           <LocaleSwitch onDark={onDark} current={locale} other={otherLocale} otherPath={otherPath} />

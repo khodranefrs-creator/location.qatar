@@ -42,11 +42,11 @@ export default async function Home({
       <SearchSection locale={locale} dict={dict} />
       <FeaturedSection locale={locale} dict={dict} />
       <MarketStatementSection locale={locale} dict={dict} />
-      <ServicesSection locale={locale} dict={dict} />
       <AreasSection locale={locale} dict={dict} />
+      <ServicesSection locale={locale} dict={dict} />
       <SellSection locale={locale} dict={dict} />
       <AboutSection locale={locale} dict={dict} />
-      <TrustSection dict={dict} />
+      <TrustSection locale={locale} dict={dict} />
       <ContactSection locale={locale} dict={dict} />
     </main>
   );
