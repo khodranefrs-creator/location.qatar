@@ -51,7 +51,7 @@ export function AreasSection({
         <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Dominant photographic place moment */}
           <Reveal className="lg:col-span-7">
-            <div className="relative aspect-[16/11] overflow-hidden bg-ink-soft">
+            <div className="relative aspect-[16/11] overflow-hidden bg-ink-soft md:aspect-[16/10]">
               <Image
                 src="/images/hero/hero-2.png"
                 alt={locale === "ar" ? "قطر" : "Qatar"}

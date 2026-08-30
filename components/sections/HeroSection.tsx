@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowIcon } from "@/components/ui";
+import { Eyebrow, ArrowIcon } from "@/components/ui";
 import { site } from "@/lib/site";
 import type { Dict } from "@/components/types";
 import type { Locale } from "@/lib/dictionaries";
@@ -18,10 +18,7 @@ export function HeroSection({
       <div className="mx-auto grid max-w-[1440px] gap-0 px-5 pt-24 md:px-10 md:pt-28 lg:grid-cols-12 lg:px-0">
         {/* Typography block */}
         <div className="flex flex-col justify-center pb-10 lg:col-span-5 lg:pb-0 lg:pl-10 lg:pr-6">
-          <p className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.3em] text-gold">
-            <span className="h-px w-8 bg-gold" />
-            {h.eyebrow}
-          </p>
+          <Eyebrow tone="gold">{h.eyebrow}</Eyebrow>
           <h1
             className={`mt-7 text-[clamp(2.5rem,7vw,4.75rem)] leading-[1.0] tracking-tight text-ink md:text-[clamp(3rem,6vw,4.5rem)] ${
               locale === "ar" ? "arabic font-bold" : "font-semibold"

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SearchBar } from "@/components/SearchBar";
-import { Container, ArrowIcon } from "@/components/ui";
+import { Container, Eyebrow, ArrowIcon } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { properties } from "@/lib/properties";
 import type { Dict } from "@/components/types";
@@ -38,15 +38,12 @@ export function SearchSection({
   ];
 
   return (
-    <section className="bg-paper py-16 md:py-28" aria-label={s.title}>
+    <section className="bg-mist/40 py-16 md:py-28" aria-label={s.title}>
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <Reveal>
-              <p className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.3em] text-gold">
-                <span className="h-px w-8 bg-gold" />
-                {s.title}
-              </p>
+              <Eyebrow tone="gold">{s.title}</Eyebrow>
               <h2
                 className={`mt-5 text-3xl leading-tight tracking-tight text-ink md:text-4xl ${
                   locale === "ar" ? "arabic font-semibold" : "font-semibold"
@@ -60,15 +57,12 @@ export function SearchSection({
           <div className="lg:col-span-8">
             <Reveal delay={80}>
               <div className="border-t border-line">
-                {channels.map((c, i) => (
+                {channels.map((c) => (
                   <Link
                     key={c.href}
                     href={c.href}
-                    className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b border-line py-7 transition-colors hover:bg-mist/60 md:gap-8"
+                    className="group grid grid-cols-[1fr_auto] items-center gap-4 border-b border-line py-7 transition-colors hover:bg-mist/60 md:gap-8"
                   >
-                    <span className="text-xs font-medium tracking-[0.2em] text-stone tabular-nums">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
                     <span className="flex items-baseline gap-4">
                       <span className={`text-2xl text-ink transition-colors group-hover:text-burgundy md:text-3xl ${locale === "ar" ? "arabic font-medium" : "font-medium"}`}>
                         {c.label}

@@ -52,8 +52,8 @@ export function ContactSection({
           <Reveal delay={80} className="min-w-0 lg:col-span-6 lg:ps-10">
             <div className="border-t border-line pt-8">
               <div className="flex flex-col divide-y divide-line">
-                <Fact label={t.phone} value={site.phoneDisplay} href={`tel:${site.phoneRaw}`} dir="ltr" />
-                <Fact label={t.whatsapp} value={site.phoneDisplay} href={site.whatsappLink} dir="ltr" />
+                <Fact label={t.phone} value={site.phoneDisplay} href={`tel:${site.phoneRaw}`} dir="ltr" size="lg" />
+                <Fact label={t.whatsapp} value={site.phoneDisplay} href={site.whatsappLink} dir="ltr" size="lg" />
                 <Fact label={t.email} value={site.email} href={`mailto:${site.email}`} dir="ltr" />
               </div>
 
@@ -96,11 +96,13 @@ function Fact({
   value,
   href,
   dir,
+  size = "md",
 }: {
   label: string;
   value: string;
   href: string;
   dir?: string;
+  size?: "md" | "lg";
 }) {
   const external = href.startsWith("http");
   return (
@@ -110,7 +112,9 @@ function Fact({
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
-        className="min-w-0 break-all text-end text-lg font-medium text-ink transition-colors hover:text-burgundy"
+        className={`min-w-0 break-all text-end font-medium text-ink transition-colors hover:text-burgundy ${
+          size === "lg" ? "text-2xl md:text-3xl" : "text-lg"
+        }`}
         dir={dir}
       >
         {value}

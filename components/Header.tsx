@@ -47,7 +47,7 @@ export function Header({
     { label: dict.nav.contact, href: `/${locale}/contact` },
   ];
 
-  const onDark = !scrolled && !open;
+  const onDark = false;
 
   return (
     <header

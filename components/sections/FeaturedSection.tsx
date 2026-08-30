@@ -36,7 +36,7 @@ export function FeaturedSection({
   const [primary, ...rest] = ordered;
 
   return (
-    <section className="bg-paper py-20 md:py-28">
+    <section className="bg-paper py-24 md:py-32">
       <Container>
         <Reveal>
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
@@ -101,6 +101,13 @@ export function FeaturedSection({
                   {locale === "ar" ? primary.descriptionAr : primary.descriptionEn}
                 </p>
 
+                <p className="mt-5 text-[11px] uppercase tracking-[0.22em] text-stone">
+                  {dict.propertyDetail.reference} ·{" "}
+                  <span className="font-medium tracking-normal text-ink/70" dir="ltr">
+                    {primary.referenceNumber}
+                  </span>
+                </p>
+
                 <div className="mt-9 grid max-w-md grid-cols-3 gap-6 border-y border-line py-6">
                   <div>
                     <p className="text-[11px] uppercase tracking-[0.2em] text-stone">{dict.propertyDetail.price}</p>
@@ -134,7 +141,7 @@ export function FeaturedSection({
         {rest.length > 0 && (
           <Reveal className="mt-14">
             <div className="border-t border-line">
-              {rest.map((p, i) => (
+              {rest.map((p) => (
                 <Link
                   key={p.id}
                   href={`/${locale}/properties/${p.slug}`}
@@ -152,7 +159,7 @@ export function FeaturedSection({
                   </div>
                   <div>
                     <p className="text-[11px] uppercase tracking-[0.24em] text-gold">
-                      {String(i + 2).padStart(2, "0")} — {getPurposeLabel(locale)(p.purpose)} · {getDistrictLabels(locale, p)}
+                      {getPurposeLabel(locale)(p.purpose)} · {getDistrictLabels(locale, p)}
                     </p>
                     <h4 className={`mt-1 text-xl text-ink md:text-2xl ${locale === "ar" ? "arabic" : ""}`}>
                       {locale === "ar" ? p.titleAr : p.titleEn}

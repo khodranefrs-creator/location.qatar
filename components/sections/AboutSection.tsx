@@ -15,19 +15,19 @@ export function AboutSection({
   const t = dict.about;
   const m = dict.marketStatement;
   return (
-    <section className="bg-mist/50 py-20 md:py-28">
+    <section className="bg-mist py-24 md:py-32">
       <Container>
         <Reveal>
           <div className="border-t border-line pt-16 md:pt-24">
             <Eyebrow tone="gold">{t.eyebrow}</Eyebrow>
             {/* Brand statement — scale/whitespace driven */}
             <h2
-              className={`mt-10 max-w-5xl text-[clamp(2.6rem,8vw,6rem)] leading-[1.0] tracking-tight text-ink md:text-[clamp(3.5rem,8vw,7rem)] ${
+              className={`mt-10 max-w-5xl text-[clamp(2.5rem,8vw,5.5rem)] leading-[1.0] tracking-tight text-ink md:text-[clamp(3.5rem,7vw,6rem)] ${
                 locale === "ar" ? "arabic font-bold" : "font-semibold"
               }`}
             >
               {m.title1}
-              <span className="block text-burgundy">{m.title2}</span>
+              <span className="block">{m.title2}</span>
             </h2>
 
             <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
